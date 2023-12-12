@@ -1,0 +1,29 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+stages:
+  - stage: Build
+    jobs:
+      - job: FirstJob
+        steps:
+          - bash: echo build FirstJob
+      - job: SecondJob
+        steps:
+          - bash: echo build SecondJob
+  - stage: DevDeploy
+    jobs:
+      - job: DevDeployJob
+        steps:
+          - bash: echo DevDeploy Job
+  - stage: QADeploy
+    jobs:
+      - job: QADeployJob
+        steps:
+          - bash: echo QADeploy Job
+  - stage: prodDeploy
+    jobs:
+      - job: ProdDeployJob
+        steps:
+          - bash: echo ProdDeploy Job
