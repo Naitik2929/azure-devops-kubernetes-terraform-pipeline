@@ -24,12 +24,17 @@ stages:
 
           - task: CopyFiles@2
             inputs:
-                SourceFolder: '$(System.DefaultWorkingDirectory)'
-                Contents: |
-                  **/*.yaml
-                  **/*.tf
-                TargetFolder: '$(Build.ArtifactStagingDirectory)'
+              SourceFolder: "$(System.DefaultWorkingDirectory)"
+              Contents: |
+                **/*.yaml
+                **/*.tf
+              TargetFolder: "$(Build.ArtifactStagingDirectory)"
           - bash: ls -R $(Build.ArtifactStagingDirectory)
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: "drop"
+              publishLocation: "Container"
   # - stage: DevDeploy
   #   variables:
   #      enviroment: Dev
